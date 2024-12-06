@@ -2,11 +2,9 @@ nav img {
     width: 80px;
 }
 
-main {
-    padding-left: 20%;
-}
 
 #user-input{
-    padding: 20px;
+    width: 500px;
+    margin: auto;
 }
 
