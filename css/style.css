@@ -11,3 +11,8 @@ nav img {
 #weatherData {
     padding-top: 40px;
 }
+
+.dataTitle {
+    height: 20px;
+    padding-bottom: 20px;
+}

@@ -62,18 +62,30 @@
             <h4 class="w-100 d-flex justify-content-center">Enter Your Coordinates</h4>
 
             <div class="w-100 d-flex justify-content-center">
+                <button id="getLocation" type="button" class="btn btn-primary" data-mdb-ripple-init>
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </button>
+
                 <input type="text" id="LatitudeForm" placeholder="Latitude"/>
                 <input type="text" id="LongitudeForm" placeholder="Longitude"/>
                 
                 <button id="searchData" type="button" class="btn btn-primary" data-mdb-ripple-init>
-                    <i class="fas fa-search"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
         </div>
 
-        <section id="weatherData" class="w-100 d-flex justify-content-center">
-            <div class="weatherData"></div>
-        </section>
+        <!-- Weather Data Section -->
+        <div class="container mt-5">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-8 col-sm-12 d-flex flex-column align-items-center">
+                    <!-- Title Section -->
+                    <div class="dataTitle mb-4"></div>
+                    <!-- Weather Data Display -->
+                    <div class="weatherData text-center"></div>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>
