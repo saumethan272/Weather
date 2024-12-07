@@ -46,7 +46,7 @@ function displayWeather() {
 }
 
 // ------------------ Function to get user's geolocation using async/await ------------------
-async function getUserLocation() {
+async function getGpsUserLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -67,25 +67,38 @@ async function getUserLocation() {
     });
 }
 
+function getPostcodeUserLocation(postcode) {
+    if (postcode || postcode.trim() !== "") {
+        const url=`https://api.postcodes.io/postcodes/${postcode.trim()}`;
+
+        $.getJSON(url, function(data) {
+            if (data.status === 200 && data.result) {
+                longitude = data.result.longitude;
+                latitude = data.result.latitude;
+                
+                getWeather();
+            }
+        }).fail(function (jqXHR) {
+            if (jqXHR.status === 404) {
+                alert("Postcode not found. Please enter a valid postcode.");
+            } else {
+                alert("An error occurred while fetching postcode data. Please try again.");
+            }
+        });
+    }
+}
+
 // ------------------ Document Ready Logic ------------------
 $(document).ready(function () {
     $("#searchData").on("click", function () {
-        // get lat and lon
-        latitude = $("#LatitudeForm").val();
-        longitude = $("#LongitudeForm").val();
+        const postcode = $("#postcodeForm").val();
 
-        // Validate inputs
-        if (!latitude || !longitude) {
-            alert("Please enter both latitude and longitude.");
-            return;
-        }
-
-        getWeather();
+        getPostcodeUserLocation(postcode);
     });
 
     $("#getLocation").on("click", async function () {
         try {
-            await getUserLocation();
+            await getGpsUserLocation();
             await getWeather();
         } catch (error) {
             alert("Could not fetch user location.");
