@@ -77,8 +77,8 @@ function displayWeather(date) {
         if (pair.date === date) {
             $(".weatherDataContainer").append(`
                 <div class="weatherEntry">
-                    <div class="timeData">Time: ${pair.time}</div>
-                    <div class="tempData">Temp: ${pair.temperature}°C</div>
+                    <div class="timeData">${pair.time}</div>
+                    <div class="tempData">${pair.temperature}°C</div>
                 </div>
             `);
         }
