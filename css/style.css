@@ -38,12 +38,22 @@ nav img {
 /* Weather entry styling */
 .weatherEntry {
     display: inline-block; 
-    margin-right: 20px; 
+    margin-right: 2px; 
+    border: none;
+    color: black;
+    padding: 15px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+    border-radius: 5px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .dateButton {    
     border: none;
-    color: black;
     padding: 15px 40px;
     text-align: center;
     text-decoration: none;
