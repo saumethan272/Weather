@@ -27,16 +27,21 @@ function getWeather() {
 
 // ------------------ Function to display weather data ------------------ 
 function displayWeather() {
-    $(".weatherData").empty(); 
-    $(".dataTitle").empty(); 
+    // Clear previous data
+    $(".weatherDataContainer").empty(); 
+    $(".dataTitle").empty();
 
-    $(".dataTitle").append(`<h4>Weather data</h4>`);
+    // Add the title
+    $(".dataTitle").append(`<h4>Weather Data</h4>`);
 
+    // Add time and temperature data
     timeTempPairs.forEach(pair => {
-        
-        $(".weatherData").append(
-            `<p>Date: ${pair.date}, Time: ${pair.time}, Temp: ${pair.temperature}°C</p>`
-        );
+        $(".weatherDataContainer").append(`
+            <div class="weatherEntry">
+                <div class="timeData">Date: ${pair.date}, Time: ${pair.time}</div>
+                <div class="tempData">Temp: ${pair.temperature}°C</div>
+            </div>
+        `);
     });
 }
 

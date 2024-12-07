@@ -78,11 +78,18 @@
         <!-- Weather Data Section -->
         <div class="container mt-5">
             <div class="row justify-content-center align-items-center">
-                <div class="col-md-8 col-sm-12 d-flex flex-column align-items-center">
-                    <!-- Title Section -->
-                    <div class="dataTitle mb-4"></div>
-                    <!-- Weather Data Display -->
-                    <div class="weatherData text-center"></div>
+                <!-- Title Section -->
+                <div class="dataTitle mb-4"></div>
+                <div class="col-md-8 col-sm-12">
+                    <!-- Horizontally Scrollable Weather Data -->
+                    <div class="weatherDataContainer d-flex overflow-auto p-3 border rounded">
+                        <!-- 
+                        <div class="weatherEntry">
+                            <div class="timeData">Date: ${pair.date}, Time: ${pair.time}</div>
+                            <div class="tempData">Temp: ${pair.temperature}°C</div>
+                        </div> 
+                        -->
+                    </div>
                 </div>
             </div>
         </div>
