@@ -56,7 +56,7 @@
     </header>
     </div>
 
-    <main>
+    <main style="background-image: url('images/sunny.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
         <!-- Postcode Input Section -->
         <div id="user-input" class="input-group">
             <h4 class="w-100 d-flex justify-content-center">Enter Your Coordinates</h4>
@@ -76,9 +76,10 @@
 
         <!-- Weather Data Section -->
         <div class="container mt-5">
+            <!-- Weather Temp and Time Section -->
             <div class="row justify-content-center align-items-center">
                 <!-- Title Section -->
-                <div class="dataTitle mb-4"></div>
+                <div class="dataTitle mb-4 col-md-8 col-sm-12"></div>
                 <div class="col-md-8 col-sm-12">
                     <!-- Horizontally Scrollable Weather Data -->
                     <div class="weatherDataContainer d-flex overflow-auto p-3 border rounded">
@@ -92,6 +93,7 @@
                 </div>
             </div>
 
+            <!-- Weather Dates Section -->
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-8 col-sm-12">
                     <!-- Horizontally Scrollable Weather Data -->

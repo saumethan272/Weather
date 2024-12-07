@@ -1,7 +1,14 @@
+body{
+    overflow: hidden;
+}
+
+main {
+    height: 100vh;
+}
+
 nav img {
     width: 80px;
 }
-
 
 #user-input{
     margin: auto;
