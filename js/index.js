@@ -41,11 +41,18 @@ function displayWeatherDates() {
     $(".dateContainer").empty();
     $(".dataTitle").empty();
 
+    let formatedPostcode = postcode
+
     if (postcode === undefined) {
         getPostcode();
+    } else {
+        // Add the title
+        formatedPostcode = postcode.toUpperCase();
+        const mainPart = formatedPostcode.slice(0, -3); 
+        const lastPart = formatedPostcode.slice(-3);
+        formatedPostcode = `${mainPart} ${lastPart}`; 
     }
-    // Add the title
-    $(".dataTitle").append(`<h4>Weather for ${postcode}</h4>`);
+    $(".dataTitle").append(`<h4>Weather for ${formatedPostcode}</h4>`);
 
     const dates = [];
 
@@ -54,9 +61,9 @@ function displayWeatherDates() {
         if (!dates.includes(pair.date)) {
             dates.push(pair.date);
             
-        $(".dateContainer").append(`
-            <button type="button" id="${pair.date}" class="dateButton">${pair.date.slice(5)}</button>
-        `);
+            $(".dateContainer").append(`
+                <button type="button" id="${pair.date}" class="dateButton">${pair.date.slice(5)}</button>
+            `);
         }
     });
 }
