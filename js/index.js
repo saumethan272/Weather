@@ -28,21 +28,33 @@ function getWeather() {
 // ------------------ Function to display weather data ------------------ 
 function displayWeather() {
     // Clear previous data
-    $(".weatherDataContainer").empty(); 
-    $(".dataTitle").empty();
+    $(".dateContainer").empty(); 
+    //$(".dataTitle").empty();
 
     // Add the title
     $(".dataTitle").append(`<h4>Weather Data</h4>`);
 
+    const dates = [];
+
     // Add time and temperature data
     timeTempPairs.forEach(pair => {
-        $(".weatherDataContainer").append(`
-            <div class="weatherEntry">
-                <div class="timeData">Date: ${pair.date}, Time: ${pair.time}</div>
-                <div class="tempData">Temp: ${pair.temperature}°C</div>
-            </div>
+        if (!dates.includes(pair.date)) {
+            dates.push(pair.date);
+            
+        $(".dateContainer").append(`
+            <button type="button" class="btn btn-outline-secondary dates">Date: ${pair.date}</button>
         `);
+        }
+
+        // $(".weatherDataContainer").append(`
+        //     <div class="weatherEntry">
+        //         <div class="timeData">Time: ${pair.time}</div>
+        //         <div class="tempData">Temp: ${pair.temperature}°C</div>
+        //     </div>
+        // `);
+
     });
+    console.log(dates);
 }
 
 // ------------------ Function to get user's geolocation using async/await ------------------
