@@ -27,16 +27,32 @@ function getWeather() {
 }
 
 function getPostcode() {
-    const url=`api.postcodes.io/postcodes?lon=${longitude}&lat=${latitude}`;
-        $.getJSON(url, function(data) {
-            if (data.status === 200 && data.result) {
-                postcode = data.result.postcode;
+    return new Promise((resolve, reject) => {
+        const url = `https://findthatpostcode.uk/points/${latitude},${longitude}.json`;
+        $.getJSON(url, function (data) {
+            if (
+                data &&
+                data.data &&
+                data.data.relationships &&
+                data.data.relationships.nearest_postcode &&
+                data.data.relationships.nearest_postcode.data
+            ) {
+                postcode = data.data.relationships.nearest_postcode.data.id;
+                console.log(`Nearest Postcode: ${postcode}`);
+                resolve(); // Resolve the promise
+            } else {
+                console.error("Error: Could not retrieve postcode from response data.");
+                reject(new Error("Postcode data not found"));
             }
-        })
+        }).fail(() => {
+            reject(new Error("Failed to fetch postcode"));
+        });
+    });
 }
 
+
 // ------------------ Function to display dates that the forcast is available for ------------------ 
-function displayWeatherDates() {
+async function displayWeatherDates() {
     // Clear previous data
     $(".dateContainer").empty();
     $(".dataTitle").empty();
@@ -44,15 +60,20 @@ function displayWeatherDates() {
     let formatedPostcode = postcode
 
     if (postcode === undefined) {
-        getPostcode();
-    } else {
+        try {
+            await getPostcode(); // Wait for the postcode to be fetched
+        } catch (error) {
+            console.error("Failed to fetch postcode:", error);
+        }
+    } 
+    if (postcode) {
         // Add the title
         formatedPostcode = postcode.toUpperCase();
         const mainPart = formatedPostcode.slice(0, -3); 
         const lastPart = formatedPostcode.slice(-3);
         formatedPostcode = `${mainPart} ${lastPart}`; 
     }
-    $(".dataTitle").append(`<h4>Weather for ${formatedPostcode}</h4>`);
+    $(".dataTitle").append(`<h4 id="title">Weather for ${formatedPostcode}</h4>`);
 
     const dates = [];
 
@@ -61,8 +82,12 @@ function displayWeatherDates() {
         if (!dates.includes(pair.date)) {
             dates.push(pair.date);
             
+            let formattedDate = pair.date.slice(5);
+            const [month, day] = formattedDate.split('-');
+            formattedDate = `${day}-${month}`;
+
             $(".dateContainer").append(`
-                <button type="button" id="${pair.date}" class="dateButton">${pair.date.slice(5)}</button>
+                <button type="button" id="${pair.date}" class="dateButton">${formattedDate}</button>
             `);
         }
     });
