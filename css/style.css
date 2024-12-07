@@ -1,3 +1,7 @@
+* {
+    color: white;
+}
+
 body{
     overflow: hidden;
 }
@@ -40,7 +44,7 @@ nav img {
 .dateButton {    
     border: none;
     color: black;
-    padding: 15px 32px;
+    padding: 15px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
