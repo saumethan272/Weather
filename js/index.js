@@ -19,17 +19,16 @@ function getWeather() {
                     timeTempPairs.push({ date, time, temperature });
                 });
             } 
-            displayWeather();
+            displayWeatherDates();
         });
     }
     
 }
 
-// ------------------ Function to display weather data ------------------ 
-function displayWeather() {
+// ------------------ Function to display dates that the forcast is available for ------------------ 
+function displayWeatherDates() {
     // Clear previous data
-    $(".dateContainer").empty(); 
-    //$(".dataTitle").empty();
+    $(".dateContainer").empty();;
 
     // Add the title
     $(".dataTitle").append(`<h4>Weather Data</h4>`);
@@ -42,19 +41,27 @@ function displayWeather() {
             dates.push(pair.date);
             
         $(".dateContainer").append(`
-            <button type="button" class="btn btn-outline-secondary dates">Date: ${pair.date}</button>
+            <button type="button" id="${pair.date}" class="btn btn-outline-secondary">Date: ${pair.date}</button>
         `);
         }
-
-        // $(".weatherDataContainer").append(`
-        //     <div class="weatherEntry">
-        //         <div class="timeData">Time: ${pair.time}</div>
-        //         <div class="tempData">Temp: ${pair.temperature}°C</div>
-        //     </div>
-        // `);
-
     });
-    console.log(dates);
+}
+
+// ------------------ Function to display time and temp for coresponing dates ------------------ 
+function displayWeather(date) {
+    // Clear previous data
+    $(".weatherDataContainer").empty()
+
+    timeTempPairs.forEach(pair => {
+        if (pair.date === date) {
+            $(".weatherDataContainer").append(`
+                <div class="weatherEntry">
+                    <div class="timeData">Time: ${pair.time}</div>
+                    <div class="tempData">Temp: ${pair.temperature}°C</div>
+                </div>
+            `);
+        }
+    });
 }
 
 // ------------------ Function to get user's geolocation using async/await ------------------
@@ -115,5 +122,11 @@ $(document).ready(function () {
         } catch (error) {
             alert("Could not fetch user location.");
         }
+    });
+
+    $(".dateContainer").on("click", "button", function () {
+        const date = $(this).attr("id");
+        displayWeather(date);
+
     });
 });
