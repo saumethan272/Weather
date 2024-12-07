@@ -51,6 +51,11 @@ nav img {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+/* Hover */
+.dateButton:hover {
+    background-color: rgba(255, 255, 255, 0.6); 
+}
+
 /* scrollbar Styling */
 ::-webkit-scrollbar {
     width: 7.5px;
