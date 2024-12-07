@@ -35,3 +35,36 @@ nav img {
     display: inline-block; 
     margin-right: 20px; 
 }
+
+.dateButton {    
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;
+    width: auto;
+    white-space: nowrap;
+    border-radius: 10px;
+    height: 80px;
+}
+
+/* Nav Styling */
+::-webkit-scrollbar {
+    width: 7.5px;
+    height: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b7bcc4; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7f838a; 
+}
