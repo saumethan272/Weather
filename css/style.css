@@ -1,7 +1,3 @@
-* {
-    color: white;
-}
-
 body{
     overflow: hidden;
 }
@@ -11,12 +7,17 @@ main {
     height: 100vh;
 }
 
+.timeData, .tempData, button, #title{
+    color: white;
+}
+
 nav img {
     width: 80px;
 }
 
 #user-input{
     margin: auto;
+    color: black;
 }
 
 #weatherDataTime {
