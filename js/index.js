@@ -55,7 +55,7 @@ function displayWeatherDates() {
             dates.push(pair.date);
             
         $(".dateContainer").append(`
-            <button type="button" id="${pair.date}" class="dateButton text-dark bg-opacity-25 bg-dark">${pair.date.slice(5)}</button>
+            <button type="button" id="${pair.date}" class="dateButton">${pair.date.slice(5)}</button>
         `);
         }
     });
