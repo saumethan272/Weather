@@ -2,6 +2,7 @@
 let timeTempPairs;
 let latitude;
 let longitude;
+let postcode;
 
 // ------------------ Function to weather ------------------ 
 function getWeather() {
@@ -25,13 +26,26 @@ function getWeather() {
     
 }
 
+function getPostcode() {
+    const url=`api.postcodes.io/postcodes?lon=${longitude}&lat=${latitude}`;
+        $.getJSON(url, function(data) {
+            if (data.status === 200 && data.result) {
+                postcode = data.result.postcode;
+            }
+        })
+}
+
 // ------------------ Function to display dates that the forcast is available for ------------------ 
 function displayWeatherDates() {
     // Clear previous data
-    $(".dateContainer").empty();;
+    $(".dateContainer").empty();
+    $(".dataTitle").empty();
 
+    if (postcode === undefined) {
+        getPostcode();
+    }
     // Add the title
-    $(".dataTitle").append(`<h4>Weather Data</h4>`);
+    $(".dataTitle").append(`<h4>Weather for ${postcode}</h4>`);
 
     const dates = [];
 
@@ -86,7 +100,7 @@ async function getGpsUserLocation() {
     });
 }
 
-function getPostcodeUserLocation(postcode) {
+function getPostcodeUserLocation() {
     if (postcode || postcode.trim() !== "") {
         const url=`https://api.postcodes.io/postcodes/${postcode.trim()}`;
 
@@ -110,9 +124,9 @@ function getPostcodeUserLocation(postcode) {
 // ------------------ Document Ready Logic ------------------
 $(document).ready(function () {
     $("#searchData").on("click", function () {
-        const postcode = $("#postcodeForm").val();
+        postcode = $("#postcodeForm").val();
 
-        getPostcodeUserLocation(postcode);
+        getPostcodeUserLocation();
     });
 
     $("#getLocation").on("click", async function () {
